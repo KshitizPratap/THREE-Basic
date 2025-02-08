@@ -34,17 +34,17 @@ const earth = new THREE.Mesh(geometry, material);
 earthGroup.add(earth);
 
 const nightLightMaterial = new THREE.MeshStandardMaterial({
-  map: loader.load("./texture/lightEarth.jpg"),
+  map: loader.load("./texture/2k_earth_nightmap.jpg"),
   blending: THREE.AdditiveBlending,
   emissive: new THREE.Color(0xffffff), // Makes the texture glow
-  emissiveMap: loader.load("./texture/lightEarth.jpg"), // Uses night lights for emission
+  emissiveMap: loader.load("./texture/2k_earth_nightmap.jpg"), // Uses night lights for emission
   emissiveIntensity: 0.25, // Adjust brightness
 });
 const lightEarthMesh = new THREE.Mesh(geometry, nightLightMaterial);
 earthGroup.add(lightEarthMesh);
 
 const couldEarthMaterial = new THREE.MeshStandardMaterial({
-  map: loader.load("./texture/cloudEarth.jpg"),
+  map: loader.load("./texture/2k_earth_clouds.jpg"),
   blending: THREE.AdditiveBlending,
   transparent: true,
   opacity: 0.75,
@@ -53,16 +53,6 @@ const couldEarthMaterial = new THREE.MeshStandardMaterial({
 const cloudEarthMesh = new THREE.Mesh(geometry, couldEarthMaterial);
 cloudEarthMesh.scale.setScalar(1.009);
 earthGroup.add(cloudEarthMesh);
-
-const bumpEarthMaterial = new THREE.MeshStandardMaterial({
-  map: loader.load("./texture/bumpEarth.jpg"),
-  blending: THREE.AdditiveBlending,
-  transparent: true,
-  opacity: 0.5,
-  shadowSide: 1,
-});
-const bumpEarthMesh = new THREE.Mesh(geometry, bumpEarthMaterial);
-earthGroup.add(bumpEarthMesh);
 
 scene.add(earthGroup);
 
@@ -83,7 +73,6 @@ function animate(t = 0) {
   earth.rotation.y = t * 0.0001;
   lightEarthMesh.rotation.y = t * 0.0001;
   cloudEarthMesh.rotation.y = t * 0.00015;
-  bumpEarthMesh.rotation.y = t * 0.0001;
   fresnalMesh.rotation.y = t * 0.0001;
   renderer.render(scene, camera);
   controls.update();
